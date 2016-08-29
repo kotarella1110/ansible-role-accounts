@@ -1,0 +1,35 @@
+---
+# tasks file for ansible-role-users
+
+- name: Ensure /etc/sudoers.d exists
+  become: yes
+  file:
+    path: /etc/sudoers.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+
+- name: Enable include of /etc/sudoers.d
+  become: yes
+  lineinfile:
+    name: /etc/sudoers
+    regexp: "^#includedir"
+    line: "#includedir /etc/sudoers.d"
+    state: present
+
+- name: Add sudoers
+  become: yes
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/{{ item.name }}"
+  with_items: "{{ users_sudoers }}"
+  when: item.state is not defined or item.state == "present"
+
+- name: Remove sudoers
+  become: yes
+  file:
+    path: "/etc/sudoers.d/{{ item }}"
+    state: absent
+  with_items: "{{ users_sudoers }}"
+  when: item.state is defined and item.state == "absent"

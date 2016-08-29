@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-role-users
+
+- name: Manage groups
+  become: yes
+  group:
+    gid: "{{ item.gid | default(omit) }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state | default(omit) }}"
+    system: "{{ item.system | default(omit) }}"
+  with_items: "{{ users_groups }}"

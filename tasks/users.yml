@@ -1,0 +1,49 @@
+---
+# tasks file for ansible-role-users
+
+- name: Manage user accounts
+  become: yes
+  user:
+    append: "{{ item.append | default(omit) }}"
+    comment: "{{ item.comment | default(item.name) }}"
+    createhome: "{{ item.createhome | default(omit) }}"
+    expires: "{{ item.expires | default(omit) }}"
+    force: "{{ item.force | default(omit) }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    groups: "{{ item.groups | default([]) | join(',') | default(omit) }}"
+    home: "{{ item.home | default(omit) }}"
+    login_class: "{{ item.login_class | default(omit) }}"
+    move_home: "{{ item.move_home | default(omit) }}"
+    name: "{{ item.name }}"
+    non_unique: "{{ item.non_unique | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+    remove: "{{ item.remove | default(omit) }}"
+    seuser: "{{ item.seuser | default(omit) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    skeleton: "{{ item.skeleton | default(omit) }}"
+    ssh_key_bits: "{{ item.ssh_key_bits | default(omit) }}"
+    ssh_key_comment: "{{ item.ssh_key_commnet | default(omit) }}"
+    ssh_key_file: "{{ item.ssh_key_file | default(omit) }}"
+    ssh_key_passphrase: "{{ item.ssh_key_passphrase | default(omit) }}"
+    ssh_key_type: "{{ item.ssh_key_type | default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
+    system: "{{ item.system | default(omit) }}"
+    uid: "{{ item.uid | default(omit) }}"
+    update_password: "{{ item.update_password | default(omit) }}"
+  with_items: "{{ users }}"
+
+- name: Manage an SSH authorized key
+  become: yes
+  authorized_key:
+    exclusive: "{{ item.1.exclusive | default(omit) }}"
+    key: "{{ item.1.key }}"
+    key_options: "{{ item.1.key_options | default(omit) }}"
+    manage_dir: "{{ item.1.manage_dir | default(omit) }}"
+    path: "{{ item.1.path | default(omit) }}"
+    state: "{{ item.1.state | default(omit) }}"
+    user: "{{ item.0.name }}"
+    validate_certs: "{{ item.1.validate_certs | default(omit) }}"
+  with_subelements:
+    - "{{ users | selectattr('authorized_keys', 'defined') | list }}"
+    - authorized_keys
