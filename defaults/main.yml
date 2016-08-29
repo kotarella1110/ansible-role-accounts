@@ -1,0 +1,16 @@
+---
+# defaults file for ansible-role-users
+
+users_sudoers: []
+
+users: []
+
+users_groups: []
+
+users_sudoers_remove: []
+
+users_remove: []
+
+users_groups_remove: []
+
+users_authorized_keys_remove: []
