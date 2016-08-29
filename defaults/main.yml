@@ -2,9 +2,9 @@
 # defaults file for ansible-role-users
 
 # Add or remove sudoers
-users_sudoers: []
+accounts_sudoers: []
 #
-# users_sudoers:
+# accounts_sudoers:
 #   # Add the sudoers 'somegroup'
 #   - name: somegroup
 #     state: present
@@ -23,10 +23,10 @@ users_sudoers: []
 #     state: absent
 
 # Add or remove groups
-users_groups: []
+accounts_groups: []
 # @see http://docs.ansible.com/ansible/group_module.html
 #
-# users_groups:
+# accounts_groups:
 #   # Add the group 'somegroup'
 #   - name: somegroup
 #   - name: admins
@@ -35,12 +35,12 @@ users_groups: []
 #   - name: somegroup
 #     state=absent
 
-# Manage user accounts
-users: []
+# Manage user accountss
+accounts_users: []
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/authorized_key_module.html
 #
-# users:
+# accounts_users:
 #   # Add the user 'johnd' with a specific uid and a primary group of 'admin'
 #   - name: johnd
 #     comment: "John Doe"
@@ -62,7 +62,7 @@ users: []
 #     generate_ssh_key: yes
 #     ssh_key_bits: 2048
 #     ssh_key_file: .ssh/id_rsa
-#   # added a consultant whose account you want to expire
+#   # added a consultant whose accounts you want to expire
 #   - name: james18
 #     shell: /bin/zsh
 #     groups: developers

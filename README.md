@@ -1,6 +1,6 @@
-# Ansible Role: Users
+# Ansible Role: Accounts
 
-This role to manage users on a system.
+This role to manage user accounts.
 
 * manges sudoers
 * manges groups
@@ -16,9 +16,9 @@ None.
 
 ```
 # Add or remove sudoers
-users_sudoers: []
+accounts_sudoers: []
 #
-# users_sudoers:
+# accounts_sudoers:
 #   # Add the sudoers 'somegroup'
 #   - name: somegroup
 #     state: present
@@ -37,10 +37,10 @@ users_sudoers: []
 #     state: absent
 
 # Add or remove groups
-users_groups: []
+accounts_groups: []
 # @see http://docs.ansible.com/ansible/group_module.html
 #
-# users_groups:
+# accounts_groups:
 #   # Add the group 'somegroup'
 #   - name: somegroup
 #   - name: admins
@@ -50,11 +50,11 @@ users_groups: []
 #     state=absent
 
 # Manage user accounts
-users: []
+accounts_users: []
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/authorized_key_module.html
 #
-# users:
+# accounts_users:
 #   # Add the user 'johnd' with a specific uid and a primary group of 'admin'
 #   - name: johnd
 #     comment: "John Doe"
@@ -112,7 +112,7 @@ None.
 ```
 - hosts: servers
   roles:
-     - { role: kotarella1110.users }
+     - { role: kotarella1110.accounts }
 ```
 
 ## License

@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
   vars:
-    users_sudoers:
+    accounts_sudoers:
       - name: somegroup
         state: present
         who: "%somegroup"
@@ -17,13 +17,13 @@
         what : "NOPASSWD: ALL" 
       - name: somegroup
         state: absent
-    users_groups:
+    accounts_groups:
       - name: somegroup
       - name: admins
       - name: developers
       - name: somegroup
         state: absent
-    users:
+    accounts_users:
       - name: johnd
         comment: "John Doe"
         uid: 1040
@@ -58,4 +58,4 @@
           - key=https://github.com/user.keys validate_certs=no
           - key="{{ lookup('file', lookup('env','HOME') + "/.ssh/id_rsa.pub") }}"
   roles:
-    - kotarella1110.users
+    - kotarella1110.accounts

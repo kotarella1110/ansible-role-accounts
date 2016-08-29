@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-role-users
 
-- name: Manage user accounts
+- name: Manage user accountss
   become: yes
   user:
     append: "{{ item.append | default(omit) }}"
@@ -31,7 +31,7 @@
     system: "{{ item.system | default(omit) }}"
     uid: "{{ item.uid | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
-  with_items: "{{ users }}"
+  with_items: "{{ accounts_users }}"
 
 - name: Manage an SSH authorized key
   become: yes
@@ -45,5 +45,5 @@
     user: "{{ item.0.name }}"
     validate_certs: "{{ item.1.validate_certs | default(omit) }}"
   with_subelements:
-    - "{{ users | selectattr('authorized_keys', 'defined') | list }}"
+    - "{{ accounts_users | selectattr('authorized_keys', 'defined') | list }}"
     - authorized_keys

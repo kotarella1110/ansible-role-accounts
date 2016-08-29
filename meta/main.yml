@@ -1,7 +1,7 @@
 galaxy_info:
   author: Kotaro Sugawara
-  description: 
-  company: your company (optional)
+  description: Manage user accounts
+  # company: your company (optional)
   
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -16,7 +16,7 @@ galaxy_info:
   # - CC-BY
   license: MIT
   
-  min_ansible_version: 1.2
+  min_ansible_version: 2.1
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -32,9 +32,9 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   #platforms:
-  #- name: EL
-  #  versions:
-  #  - all
+  - name: EL
+   versions:
+   - all
   #  - 5
   #  - 6
   #  - 7
@@ -132,9 +132,9 @@ galaxy_info:
   #  - 9.1
   #  - 9.2
   #  - 9.3
-  #- name: Ubuntu
-  #  versions:
-  #  - all
+  - name: Ubuntu
+   versions:
+   - all
   #  - lucid
   #  - maverick
   #  - natty
@@ -168,9 +168,9 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
-  #  - all
+  - name: Debian
+   versions:
+   - all
   #  - etch
   #  - jessie
   #  - lenny

@@ -23,7 +23,7 @@
   template:
     src: sudoers.j2
     dest: "/etc/sudoers.d/{{ item.name }}"
-  with_items: "{{ users_sudoers }}"
+  with_items: "{{ accounts_sudoers }}"
   when: item.state is not defined or item.state == "present"
 
 - name: Remove sudoers
@@ -31,5 +31,5 @@
   file:
     path: "/etc/sudoers.d/{{ item }}"
     state: absent
-  with_items: "{{ users_sudoers }}"
+  with_items: "{{ accounts_sudoers }}"
   when: item.state is defined and item.state == "absent"
