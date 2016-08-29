@@ -65,7 +65,8 @@ accounts_users: []
 #   # added a consultant whose accounts you want to expire
 #   - name: james18
 #     shell: /bin/zsh
-#     groups: developers
+#     groups:
+#       - developers
 #     expires: 1422403387
 #   # Adds or removes an SSH authorized key for user charlie in ~charlie/.ssh/authorized_keys
 #   - name: charlie
@@ -86,4 +87,4 @@ accounts_users: []
 #       # Using validate_certs:
 #       - key: https://github.com/user.keys validate_certs=no
 #       # Copies the key from the user who is running ansible to the remote machine user ubuntu
-#       - key: "{{ lookup('file', lookup('env','HOME') + "/.ssh/id_rsa.pub") }}"
+#       - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

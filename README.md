@@ -2,11 +2,11 @@
 
 This role to manage user accounts.
 
-* manges sudoers
-* manges groups
-* manges users
-* manages user's private key
-* manages user's authorized keys
+* sudoers
+* groups
+* users
+* user's private key
+* user's authorized keys
 
 ## Requirements
 
@@ -49,7 +49,7 @@ accounts_groups: []
 #   - name: somegroup
 #     state=absent
 
-# Manage user accounts
+# Manage user accountss
 accounts_users: []
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/authorized_key_module.html
@@ -76,10 +76,11 @@ accounts_users: []
 #     generate_ssh_key: yes
 #     ssh_key_bits: 2048
 #     ssh_key_file: .ssh/id_rsa
-#   # added a consultant whose account you want to expire
+#   # added a consultant whose accounts you want to expire
 #   - name: james18
 #     shell: /bin/zsh
-#     groups: developers
+#     groups:
+#       - developers
 #     expires: 1422403387
 #   # Adds or removes an SSH authorized key for user charlie in ~charlie/.ssh/authorized_keys
 #   - name: charlie
@@ -100,7 +101,7 @@ accounts_users: []
 #       # Using validate_certs:
 #       - key: https://github.com/user.keys validate_certs=no
 #       # Copies the key from the user who is running ansible to the remote machine user ubuntu
-#       - key: "{{ lookup('file', lookup('env','HOME') + "/.ssh/id_rsa.pub") }}"
+#       - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 ```
 
 ## Dependencies
