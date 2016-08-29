@@ -33,9 +33,9 @@ accounts_groups: []
 #   - name: developers
 #   # Remove the group 'somegroup'
 #   - name: somegroup
-#     state=absent
+#     state: absent
 
-# Manage user accountss
+# Manage user accounts
 accounts_users: []
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/authorized_key_module.html
@@ -76,7 +76,8 @@ accounts_users: []
 #       # Using github url as key source
 #       - key: https://github.com/charlie.keys
 #       # Remove the authorized_keys '/home/charlie/.ssh/id_rsa.pub'
-#       - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}" state=absent
+#       - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
+#         state: absent
 #       # Using alternate directory locations:
 #       - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
 #         path: "/etc/ssh/authorized_keys/charlie"
@@ -85,6 +86,7 @@ accounts_users: []
 #       - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
 #         key_options: 'no-port-forwarding,from="10.0.1.1"'
 #       # Using validate_certs:
-#       - key: https://github.com/user.keys validate_certs=no
+#       - key: https://github.com/user.keys
+#         validate_certs: no
 #       # Copies the key from the user who is running ansible to the remote machine user ubuntu
 #       - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
