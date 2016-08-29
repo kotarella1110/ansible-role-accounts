@@ -43,19 +43,22 @@
         ssh_key_file: .ssh/id_rsa
       - name: james18
         shell: /bin/zsh
-        groups: developers
+        groups:
+          - developers
         expires: 1422403387
       - name: charlie
         authorized_keys:
-          - key="{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
-          - key=https://github.com/charlie.keys
-          - key="{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}" state=absent
+          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
+          - key: https://github.com/charlie.keys
+          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
+            state: absent
           - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
             path: "/etc/ssh/authorized_keys/charlie"
             manage_dir: no
-          - key:  "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
+          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
             key_options: 'no-port-forwarding,from="10.0.1.1"'
-          - key=https://github.com/user.keys validate_certs=no
-          - key="{{ lookup('file', lookup('env','HOME') + "/.ssh/id_rsa.pub") }}"
+          - key: https://github.com/user.keys
+            validate_certs: no
+          - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
   roles:
     - kotarella1110.accounts
