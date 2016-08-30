@@ -1,28 +1,19 @@
 ---
 - hosts: localhost
-  remote_user: root
+  connection: local
+  roles:
+    - ../../
   vars:
     accounts_sudoers:
-      - name: somegroup
-        state: present
-        who: "%somegroup"
-        where: "ALL"
-        as_whom: "ALL"
-        what : "NOPASSWD: ALL" 
       - name: admins
         state: present
         who: "%admins"
         where: "ALL"
         as_whom: "ALL"
         what : "NOPASSWD: ALL" 
-      - name: somegroup
-        state: absent
     accounts_groups:
-      - name: somegroup
       - name: admins
       - name: developers
-      - name: somegroup
-        state: absent
     accounts_users:
       - name: johnd
         comment: "John Doe"
@@ -34,31 +25,7 @@
           - admins
           - developers
         append: yes
-      - name: johnd
-        state: absent
-        remove: yes
-      - name: jsmith
-        generate_ssh_key: yes
-        ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
-      - name: james18
-        shell: /bin/zsh
-        groups:
-          - developers
-        expires: 1422403387
       - name: charlie
         authorized_keys:
-          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
+          - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0DOQNmAj+oBowQ8+N+L8yLuBI0UD9f0C17GNRf167g+mpbUuGE77Zqb90r23foZHly5Nrmyv7nUZZM8X9Y09U1LF+BERnaYU5pMEO4nQ9BbEGYvAGsIvs9kOHSWAKZopsgL/f33nN0sOhUGnbZJPIZhv9j7OYVYW5jo2QEuvm0FUlESKkxt+VrR0RbmoxGtQdDJiOThHD+uzQeWq+hcdmy/Afz9//ZA4yzmBciVbfuR9z/1GXsrpjpga8QDqx+j+M2d95avNCt9XT2UvVQhp8e7joOIeGaTjvO+pIpvpxpXuutyaOohYy8S0juCweYMDVQ3PKYhRDjatr1qtluAGF vagrant"
           - key: https://github.com/charlie.keys
-          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
-            state: absent
-          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
-            path: "/etc/ssh/authorized_keys/charlie"
-            manage_dir: no
-          - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
-            key_options: 'no-port-forwarding,from="10.0.1.1"'
-          - key: https://github.com/user.keys
-            validate_certs: no
-          - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
-  roles:
-    - kotarella1110.accounts
