@@ -1,5 +1,7 @@
 # Ansible Role: Accounts
 
+[![Build Status](https://travis-ci.org/kotarella1110/ansible-role-accounts.svg?branch=master)](https://travis-ci.org/kotarella1110/ansible-role-accounts)
+
 This role to manage user accounts.
 
 * sudoers
