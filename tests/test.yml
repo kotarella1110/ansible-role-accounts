@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   remote_user: root
+  connection: local
   vars:
     accounts_sudoers:
       - name: somegroup
@@ -61,4 +62,4 @@
             validate_certs: no
           - key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
   roles:
-    - kotarella1110.accounts
+    - ../../
