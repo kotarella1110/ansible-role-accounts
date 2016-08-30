@@ -95,7 +95,9 @@ accounts_users:
   # Adds or removes an SSH authorized key for user charlie in ~charlie/.ssh/authorized_keys
   - name: charlie
     authorized_keys:
-      # Example using key data from a local file on the management machine
+      # Using key data
+      - key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0DOQNmAj+oBowQ8+N+L8yLuBI0UD9f0C17GNRf167g+mpbUuGE77Zqb90r23foZHly5Nrmyv7nUZZM8X9Y09U1LF+BERnaYU5pMEO4nQ9BbEGYvAGsIvs9kOHSWAKZopsgL/f33nN0sOhUGnbZJPIZhv9j7OYVYW5jo2QEuvm0FUlESKkxt+VrR0RbmoxGtQdDJiOThHD+uzQeWq+hcdmy/Afz9//ZA4yzmBciVbfuR9z/1GXsrpjpga8QDqx+j+M2d95avNCt9XT2UvVQhp8e7joOIeGaTjvO+pIpvpxpXuutyaOohYy8S0juCweYMDVQ3PKYhRDjatr1qtluAGF vagrant"
+      # Using key data from a local file on the management machine
       - key: "{{ lookup('file', '/home/charlie/.ssh/id_rsa.pub') }}"
       # Using github url as key source
       - key: https://github.com/charlie.keys

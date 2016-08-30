@@ -2,15 +2,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.synced_folder "../", "/etc/ansible/roles/kotarella1110.accounts", create: true
-
   config.vm.provision "ansible_local" do |ansible|
-    # ansible.galaxy_role_file = "requirements.yml"
-    # ansible.galaxy_roles_path = "/etc/ansible/roles"
-    # ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
     ansible.inventory_path = "tests/inventory"
     ansible.limit = "localhost"
     ansible.playbook = "tests/test.yml"
+    ansible.verbose = "v"
   end
 
 end
