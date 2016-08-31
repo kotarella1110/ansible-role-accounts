@@ -2,7 +2,6 @@
 # tasks file for ansible-role-users
 
 - name: Manage groups
-  become: yes
   group:
     gid: "{{ item.gid | default(omit) }}"
     name: "{{ item.name }}"
