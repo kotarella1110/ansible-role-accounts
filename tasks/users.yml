@@ -2,7 +2,6 @@
 # tasks file for ansible-role-users
 
 - name: Manage user accountss
-  become: yes
   user:
     append: "{{ item.append | default(omit) }}"
     comment: "{{ item.comment | default(item.name) }}"
@@ -34,7 +33,6 @@
   with_items: "{{ accounts_users }}"
 
 - name: Manage an SSH authorized key
-  become: yes
   authorized_key:
     exclusive: "{{ item.1.exclusive | default(omit) }}"
     key: "{{ item.1.key }}"
