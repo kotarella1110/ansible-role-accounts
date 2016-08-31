@@ -6,6 +6,10 @@ Vagrant.configure("2") do |config|
     ansible.inventory_path = "tests/inventory"
     ansible.limit = "localhost"
     ansible.playbook = "tests/test.yml"
+    ansible.raw_arguments = [
+        "--connection=local",
+        "--sudo",
+    ]
     ansible.verbose = "v"
   end
 
